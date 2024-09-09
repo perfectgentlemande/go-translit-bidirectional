@@ -111,6 +111,8 @@ var baseEnRu = map[string]string{
 	"R":    "Р",
 	"c":    "с",
 	"C":    "С",
+	"s":    "с",
+	"S":    "С",
 	"t":    "т",
 	"T":    "Т",
 	"u":    "у",
@@ -127,14 +129,18 @@ var baseEnRu = map[string]string{
 	"Sh":   "Ш",
 	"shch": "щ",
 	"Shch": "Щ",
-	"y":    "ы",
-	"Y":    "Ы",
+	"y":    "и",
+	"Y":    "И",
 	"iu":   "ю",
 	"Iu":   "Ю",
 	"ia":   "я",
 	"Ia":   "Я",
 	"ya":   "я",
 	"Ya":   "Я",
+	"X":    "Кс",
+	"x":    "кс",
+	"q":    "ку",
+	"Q":    "Ку",
 }
 
 func isRu(rn rune) bool {
@@ -150,7 +156,7 @@ func TransliterateEnRu(str string) string {
 	runes := []rune(str)
 
 	for i < len(runes) {
-		if i+3 < len(runes) {
+		if i+3 < len(runes) && i+4 <= len(runes) {
 			v, ok := baseEnRu[string(runes[i:i+4])]
 			if ok {
 				res.WriteString(v)
@@ -160,7 +166,7 @@ func TransliterateEnRu(str string) string {
 			}
 		}
 
-		if i+2 < len(runes) {
+		if i+2 < len(runes) && i+3 <= len(runes) {
 			v, ok := baseEnRu[string(runes[i:i+3])]
 			if ok {
 				res.WriteString(v)
@@ -170,7 +176,7 @@ func TransliterateEnRu(str string) string {
 			}
 		}
 
-		if i+1 < len(str) {
+		if i+1 < len(str) && i+2 <= len(runes) {
 			v, ok := baseEnRu[string(runes[i:i+2])]
 			if ok {
 				res.WriteString(v)
