@@ -1,6 +1,6 @@
 module github.com/perfectgentlemande/go-translit-bidirectional
 
-go 1.23.0
+go 1.20
 
 require github.com/stretchr/testify v1.9.0
 
